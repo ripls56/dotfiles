@@ -1,0 +1,20 @@
+[window]
+padding = { x = 8, y = 8 }
+opacity = 1
+
+[colors]
+primary.background = "#000000"
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[terminal.shell]
+program = "/bin/fish"
+
+[[keyboard.bindings]]
+key = "NumpadEnter"
+chars = "\r"
