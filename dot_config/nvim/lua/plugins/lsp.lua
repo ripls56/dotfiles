@@ -144,6 +144,7 @@ return {
                     ensure_installed = {
                         'lua_ls',
                         'gopls',
+                        'yamlls',
                         'rust_analyzer',
                     },
                     handlers = {
@@ -151,6 +152,18 @@ return {
                         -- it applies to every language server without a "custom handler"
                         function(server_name)
                             require('lspconfig')[server_name].setup({})
+                        end,
+                        yamlls = function()
+                            require('lspconfig').yamlls.setup({
+                                settings = {
+                                    yaml = {
+                                        schemas = {
+                                            ["https://json.schemastore.org/github-workflow.json"] =
+                                            "/.github/workflows/*",
+                                        }
+                                    }
+                                }
+                            })
                         end,
                         gopls = function()
                             require('lspconfig').gopls.setup({

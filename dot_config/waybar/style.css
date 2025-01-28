@@ -82,8 +82,9 @@ button {
 #tray,
 #mpris,
 #language,
+#custom-notification,
 #load {
-    padding: 0 10px;
+    padding: 0 8px;
     background-color: #111111;
     color: #ffffff;
 }

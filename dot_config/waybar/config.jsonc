@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 [
-  {
+    {
     // "output": ["DP-1", "eDP-2"],
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
@@ -11,29 +11,50 @@
     "modules-left": ["hyprland/workspaces", "cava"],
     "modules-center": ["hyprland/window"],
     "modules-right": [
-      "hyprland/language",
-      "tray",
-      "wireplumber",
-      "backlight",
-      "battery",
-      "cpu",
-      "clock",
-      "mpris",
+        "custom/notification",
+        "hyprland/language",
+        "tray",
+        "wireplumber",
+        "backlight",
+        "battery",
+        "cpu",
+        "clock",
+        "mpris",
     ],
     // Modules configuration
     "hyprland/workspaces": {
-      "all-outputs": true,
-      "warp-on-scroll": false,
-      "enable-bar-scroll": true,
-      "disable-scroll-wraparound": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "enable-bar-scroll": true,
+        "disable-scroll-wraparound": true,
     },
     "hyprland/language": {
-      "format-en": "en",
-      "format-ru": "ru",
+        "format-en": "en",
+        "format-ru": "ru",
     },
     "hyprland/window": {
-      "separate-outputs": true,
-      "format": "{initialTitle}",
+        "separate-outputs": true,
+        "format": "{initialTitle}",
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{} {icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
     "cava": {
       //"cava_config": "$XDG_CONFIG_HOME/.config/cava/cava.conf",
@@ -51,34 +72,34 @@
       "hide_on_silence": true,
       "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
       "actions": {
-        "on-click-right": "mode",
+          "on-click-right": "mode",
       },
     },
     "mpris": {
-      "format": "{status_icon} {dynamic}",
-      "interval": 1,
-      "dynamic-len": 40,
-      "status-icons": {
-        "playing": "▶",
-        "paused": "⏸",
-        "stopped": "",
-      },
-      "dynamic-order": ["title", "artist"],
-      "ignored-players": ["firefox"],
+        "format": "{status_icon} {dynamic}",
+        "interval": 1,
+        "dynamic-len": 40,
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸",
+            "stopped": "",
+        },
+        "dynamic-order": ["title", "artist"],
+        "ignored-players": ["firefox"],
     },
     "idle_inhibitor": {
-      "format": "{icon}",
-      "format-icons": {
-        "activated": "",
-        "deactivated": "",
-      },
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": "",
+        },
     },
     "tray": {
-      "icon-size": 14,
-      "spacing": 10,
+        "icon-size": 14,
+        "spacing": 10,
     },
     "load": {
-      "format": " {}",
+        "format": " {}",
     },
     "clock": {
       // "timezone": "America/New_York",
@@ -86,9 +107,9 @@
       "format-alt": "{:%Y-%m-%d}",
     },
     "cpu": {
-      "interval": 1,
-      "format": "  {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}",
-      "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "interval": 1,
+        "format": "  {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     },
     // "cpu": {
     //   "format": " {usage}%",
@@ -96,7 +117,7 @@
     //   "tooltip": false,
     // },
     "memory": {
-      "format": "{}% ",
+        "format": "{}% ",
     },
     "temperature": {
       // "thermal-zone": 2,
@@ -112,40 +133,40 @@
       "format-icons": ["", "", "", "", "", "", "", "", ""],
     },
     "battery": {
-      "states": {
+        "states": {
         // "good": 95,
         "warning": 30,
         "critical": 15,
-      },
-      "format": "{icon} {capacity}%",
-      "format-full": "{icon} {capacity}%",
-      "format-charging": " {capacity}%",
-      "format-plugged": " {capacity}%",
-      "format-alt": "{icon} {time}",
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
       // "format-good": "", // An empty format will hide the module
       // "format-full": "",
       "format-icons": ["", "", "", "", ""],
     },
     "wireplumber": {
-      "scroll-step": 5, // %, can be a float
-      "format": "{icon} {volume}%",
-      "format-bluetooth": "{icon} {volume}% ",
-      "format-bluetooth-muted": " {icon}",
-      "format-muted": "",
-      "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""],
-      },
-      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "scroll-step": 5, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% ",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""],
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     },
-  },
-  {
-    "output": ["HDMI-A-1"],
+    },
+    {
+        "output": ["HDMI-A-1"],
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
@@ -156,39 +177,39 @@
     "modules-center": ["clock"],
     "modules-right": ["sway/window"],
     "sway/workspaces": {
-      "all-outputs": true,
-      "warp-on-scroll": true,
-      "enable-bar-scroll": true,
-      "format": "{icon}",
-      "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "",
-        "9": "",
-        "10": "",
-      },
+        "all-outputs": true,
+        "warp-on-scroll": true,
+        "enable-bar-scroll": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "9": "",
+            "10": "",
+        },
     },
     "sway/window": {
-      "format": "{title}",
-      "max-length": 40,
-      "all-outputs": true,
+        "format": "{title}",
+        "max-length": 40,
+        "all-outputs": true,
     },
     "sway/mode": {
-      "format": "{}",
+        "format": "{}",
     },
     "sway/scratchpad": {
-      "format": "{icon} {count}",
-      "show-empty": false,
-      "format-icons": ["", ""],
-      "tooltip": true,
-      "tooltip-format": "{app}: {title}",
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}",
     },
     "clock": {
       // "timezone": "America/New_York",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "format-alt": "{:%Y-%m-%d}",
     },
-  },
+    },
 ]

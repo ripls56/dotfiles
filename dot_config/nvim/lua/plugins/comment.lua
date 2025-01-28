@@ -1,9 +1,9 @@
 return {
     {
         'numToStr/Comment.nvim',
-        cofig = true,
+        config = true,
         opts = {
-           padding = true,
+            padding = true,
         }
     }
 }

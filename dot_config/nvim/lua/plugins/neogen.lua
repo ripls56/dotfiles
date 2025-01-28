@@ -5,7 +5,7 @@ return {
             require('neogen').setup()
             vim.keymap.set(
                 "n",
-                "<leader>nf",
+                "<Leader>nf",
                 ":lua require('neogen').generate()<CR>",
                 opts
             )
